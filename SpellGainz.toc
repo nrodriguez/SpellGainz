@@ -1,0 +1,5 @@
+## Interface: 70000
+## Title: SpellGainz
+## Notes: Notifies you when you learn a spell/talent. Make those gainz
+## Author: JustNeph
+## Version: 0.0.1
