@@ -1,13 +1,45 @@
-WelcomeHome = LibStub("AceAddon-3.0"):NewAddon("SpellGainz", "AceConsole-3.0")
+SpellGainz = LibStub("AceAddon-3.0"):NewAddon("SpellGainz", "AceConsole-3.0", "AceEvent-3.0")
+AceGUI = LibStub("AceGUI-3.0")
 
-function WelcomeHome:OnInitialize()
-    self:Print("Hello World!")
+function SpellGainz:OnInitialize()
+  -- self.db = LibStub("AceDB-3.0"):New("SpellGainzDB", defaults, true)
+  -- -- LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options)
+  -- self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SpellGainz", "SpellGainz")
+
 end
 
-function WelcomeHome:OnEnable()
-    -- Called when the addon is enabled
+function SpellGainz:OnEnable()
+  local EventFrame = _G.CreateFrame("Frame", "GainzMade", _G.UIParent)
+  self:RegisterEvent("LEARNED_SPELL_IN_TAB")
 end
 
-function WelcomeHome:OnDisable()
-    -- Called when the addon is disabled
+function SpellGainz:OnDisable()
+  -- Called when the addon is disableds
+end
+
+--Event Reaction
+
+function SpellGainz:LEARNED_SPELL_IN_TAB(eventName, spellID)
+  -- Create a container frame
+  local f = AceGUI:Create("Frame")
+  f:SetCallback("OnClose",function(widget) AceGUI:Release(widget) end)
+  f:SetTitle("Spell Gainz")
+  f:SetStatusText("All the gainz you have made")
+  f:SetLayout("Flow")
+  SpellGainz:AddNewSpell(spellID, f)
+end
+
+function SpellGainz:AddNewSpell(spellID, frame)
+  local name, rank, icon, castingTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
+  local spellTexture = GetSpellTextureFileName(name)
+  self:Print(name)
+
+  self:Print(spellTexture)
+  -- Create a button
+  local spell = AceGUI:Create("Icon")
+  spell:SetImage(spellTexture)
+  spell:SetLabel(name)
+  spell:SetCallback("OnClick", function() PickupSpell(spellID) end)
+  -- Add the button to the container
+  frame:AddChild(spell)
 end
