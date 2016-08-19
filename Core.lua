@@ -2,11 +2,8 @@ SpellGainz = LibStub("AceAddon-3.0"):NewAddon("SpellGainz", "AceConsole-3.0", "A
 AceGUI = LibStub("AceGUI-3.0")
 
 function SpellGainz:OnInitialize()
-  -- self.db = LibStub("AceDB-3.0"):New("SpellGainzDB", defaults, true)
-  -- -- LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options)
-  -- self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SpellGainz", "SpellGainz")
-  self:UnregisterEvent("SPELLS_CHANGED")
-  self:RegisterEvent("PLAYER_ENTERING_WORLD")
+  SpellGainz:CreateFrame()
+  SpellGainz:SetUpConfig()
 end
 
 function SpellGainz:OnEnable()
@@ -22,14 +19,47 @@ function SpellGainz:OnDisable()
   -- Called when the addon is disableds
 end
 
+
+---All setup for those gainz
 function SpellGainz:CreateFrame()
   -- Create a container frame
   f = AceGUI:Create("Frame")
-  f:SetCallback("OnClose",function(widget) AceGUI:Release(widget) end)
+  f:SetCallback("OnClose",function(widget) f:Hide() end)
   f:SetTitle("Spell Gainz")
   f:SetStatusText("All the gainz you have made")
   f:SetLayout("Flow")
+  f:Hide() -- We don't want to display it immediately
 end
+
+function SpellGainz:SetUpConfig()
+  SpellGainz:SetupSlashConfig()
+  self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SpellGainz", "Gainz")
+
+end
+
+function SpellGainz:SetupSlashConfig()
+  local options = {
+      name = "SpellGainz",
+      handler = SpellGainz,
+      type = 'group',
+      args = {
+          show = {
+              name = "Show Gainz",
+              desc = "Show your gainz",
+              type = "execute",
+              func = function() f:Show() end
+          },
+          -- config = {
+          --   name = "Configure",
+          --   desc = "Configure your gainz panel",
+          --   type = "execute",
+          --   func = function() InterfaceOptionsFrame_OpenToCategory("SpellGainz") end
+          -- }
+      },
+  }
+  LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, {"gainz", "spellgainz"})
+end
+
 
 --Event Reaction
 function SpellGainz:PLAYER_ENTERING_WORLD()
@@ -54,12 +84,14 @@ end
 
 function SpellGainz:LEARNED_SPELL_IN_TAB(eventName, spellID)
   SpellGainz:AddNewSpell(spellID)
+  f:Show()
 end
 
 function SpellGainz:AddNewSpell(spellID)
   --Gets the spell information and the texture
   local name, rank, icon, castingTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
   local spellTexture = GetSpellTextureFileName(name)
+
   -- Create a button for the spell
   local spell = AceGUI:Create("Icon")
   spell:SetImage(spellTexture)
