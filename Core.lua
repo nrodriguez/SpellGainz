@@ -11,7 +11,7 @@ function SpellGainz:OnEnable()
 
   --Events
   self:RegisterEvent("LEARNED_SPELL_IN_TAB")
-
+  self:RegisterEvent("CHAT_MSG_SYSTEM")
   SpellGainz:CreateFrame()
 end
 
@@ -34,7 +34,6 @@ end
 function SpellGainz:SetUpConfig()
   SpellGainz:SetupSlashConfig()
   self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("SpellGainz", "Gainz")
-
 end
 
 function SpellGainz:SetupSlashConfig()
@@ -60,12 +59,6 @@ function SpellGainz:SetupSlashConfig()
   LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, {"gainz", "spellgainz"})
 end
 
-
---Event Reaction
-function SpellGainz:PLAYER_ENTERING_WORLD()
-  self:RegisterEvent("SPELLS_CHANGED")
-end
-
 -- We use the system chat message to know when spells have been unlearned
 -- and use that as the chance to reset the skills in the frame
 function SpellGainz:CHAT_MSG_SYSTEM(eventName, message)
@@ -75,6 +68,10 @@ function SpellGainz:CHAT_MSG_SYSTEM(eventName, message)
     -- local spellName = string.match(message, '%[(.+)%]')
     -- local link = GetSpellLink(spellName)
     f:ReleaseChildren()
+    print(tablelength(f.children))
+    if tablelength(f.children) == 0 then
+      f:Hide()
+    end
   end
 end
 
@@ -85,6 +82,12 @@ end
 function SpellGainz:LEARNED_SPELL_IN_TAB(eventName, spellID)
   SpellGainz:AddNewSpell(spellID)
   f:Show()
+end
+
+function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
 end
 
 function SpellGainz:AddNewSpell(spellID)
