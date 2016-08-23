@@ -1,0 +1,11 @@
+package-as: SpellGainz
+
+ignore:
+    - screenshots # ignore the scripts folder
+    - README.md # ignore a specific file
+
+manual-changelog:
+    filename: CHANGELOG.md
+    markup-type: markdown
+
+license-output: LICENSE.txt
