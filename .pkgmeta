@@ -1,0 +1,15 @@
+package-as: SpellGainz
+
+ignore:
+    - screenshots # ignore the scripts folder
+    - README.md # ignore a specific file
+
+required-dependencies:
+    - monkey-town
+
+manual-changelog: CHANGELOG.md
+
+license-output: LICENSE.txt
+
+tools-used:
+    - data-tools # same as data-tools/mainline
