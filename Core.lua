@@ -4,6 +4,7 @@ AceGUI = LibStub("AceGUI-3.0")
 function SpellGainz:OnInitialize()
   SpellGainz:CreateFrame()
   SpellGainz:SetUpConfig()
+
 end
 
 function SpellGainz:OnEnable()
@@ -65,23 +66,18 @@ function SpellGainz:CHAT_MSG_SYSTEM(eventName, message)
   local unlearnedSpellMessage = string.match(message, "(You have unlearned )")
 
   if unlearnedSpellMessage then
-    -- local spellName = string.match(message, '%[(.+)%]')
-    -- local link = GetSpellLink(spellName)
     f:ReleaseChildren()
-    print(tablelength(f.children))
     if tablelength(f.children) == 0 then
-      f:Hide()
+      f:Hide() -- If there are no active spells in the frame we should hide it
     end
   end
 end
 
-function SpellGainz:SPELLS_CHANGED(eventName, spellID)
-  self:RegisterEvent("CHAT_MSG_SYSTEM")
-end
-
 function SpellGainz:LEARNED_SPELL_IN_TAB(eventName, spellID)
-  SpellGainz:AddNewSpell(spellID)
-  f:Show()
+  if not IsPassiveSpell(spellID) then
+    SpellGainz:AddNewSpell(spellID)
+    f:Show()
+  end
 end
 
 function tablelength(T)
