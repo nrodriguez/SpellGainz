@@ -97,6 +97,12 @@ function SpellGainz:AddNewSpell(spellID)
   spell:SetLabel(name)
   spell:SetImageSize(40,40)
   spell:SetCallback("OnClick", function() PickupSpell(spellID) end)
+  spell:SetCallback("OnEnter", function()
+    GameTooltip:SetOwner(spell.frame, "ANCHOR_BOTTOMRIGHT")
+    GameTooltip:SetHyperlink(GetSpellLink(spellID))
+    GameTooltip:Show()
+  end)
+  spell:SetCallback("OnLeave", function() GameTooltip:Hide() end)
   -- Add the button to the container
   f:AddChild(spell)
 end
