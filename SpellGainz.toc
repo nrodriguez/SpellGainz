@@ -2,7 +2,7 @@
 ## Title: SpellGainz
 ## Notes: Notifies you when you learn a spell/talent. Make those gainz
 ## Author: JustNeph
-## Version: 0.1
+## Version: 0.5.3b
 ## SavedVariables: SpellGainzDB
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3

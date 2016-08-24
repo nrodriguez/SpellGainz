@@ -1,3 +1,6 @@
+# 0.5.3b
+- Shows a tooltip when you mouse over the spells you gained
+
 # 0.5.2b
 - Passive spells/talents won't show in your gainz
 
