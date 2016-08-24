@@ -1,4 +1,8 @@
-# 0.5.0
+# 0.5.2b
+- Passive spells/talents won't show in your gainz
+
+# 0.5.1b
+- Adds a fix to just listen to the chat messages off the bat to properly remove spells as they are unlearned
 - Adds slash commands for showing the ui ([#1](https://github.com/nrodriguez/SpellGainz/pull/1))
 - Adds feature to show when entering ```/gainz``` show
 - Adds the generic show button to the blizzard options
