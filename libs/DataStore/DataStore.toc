@@ -16,6 +16,10 @@
 ## X-Curse-Project-Name: DataStore
 ## X-Curse-Project-ID: datastore
 ## X-Curse-Repository-ID: wow/datastore/mainline
+## X-Curse-Packaged-Version: v0.5.3b
+## X-Curse-Project-Name: SpellGainz
+## X-Curse-Project-ID: spellgainz
+## X-Curse-Repository-ID: wow/spellgainz/mainline
 
 embeds.xml
 locale.xml

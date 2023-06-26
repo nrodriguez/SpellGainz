@@ -4,7 +4,6 @@ AceGUI = LibStub("AceGUI-3.0")
 function SpellGainz:OnInitialize()
   SpellGainz:CreateFrame()
   SpellGainz:SetUpConfig()
-
 end
 
 function SpellGainz:OnEnable()
@@ -20,12 +19,11 @@ function SpellGainz:OnDisable()
   -- Called when the addon is disableds
 end
 
-
 ---All setup for those gainz
 function SpellGainz:CreateFrame()
   -- Create a container frame
   f = AceGUI:Create("Frame")
-  f:SetCallback("OnClose",function(widget) f:Hide() end)
+  f:SetCallback("OnClose", function(widget) f:Hide() end)
   f:SetTitle("Spell Gainz")
   f:SetStatusText("All the gainz you have made")
   f:SetLayout("Flow")
@@ -39,25 +37,25 @@ end
 
 function SpellGainz:SetupSlashConfig()
   local options = {
-      name = "SpellGainz",
-      handler = SpellGainz,
-      type = 'group',
-      args = {
-          show = {
-              name = "Show Gainz",
-              desc = "Show your gainz",
-              type = "execute",
-              func = function() f:Show() end
-          },
-          -- config = {
-          --   name = "Configure",
-          --   desc = "Configure your gainz panel",
-          --   type = "execute",
-          --   func = function() InterfaceOptionsFrame_OpenToCategory("SpellGainz") end
-          -- }
+    name = "SpellGainz",
+    handler = SpellGainz,
+    type = 'group',
+    args = {
+      show = {
+        name = "Show Gainz",
+        desc = "Show your gainz",
+        type = "execute",
+        func = function() f:Show() end
       },
+      -- config = {
+      --   name = "Configure",
+      --   desc = "Configure your gainz panel",
+      --   type = "execute",
+      --   func = function() InterfaceOptionsFrame_OpenToCategory("SpellGainz") end
+      -- }
+    },
   }
-  LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, {"gainz", "spellgainz"})
+  LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, { "gainz", "spellgainz" })
 end
 
 -- We use the system chat message to know when spells have been unlearned
@@ -88,14 +86,14 @@ end
 
 function SpellGainz:AddNewSpell(spellID)
   --Gets the spell information and the texture
-  local name, rank, icon, castingTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
-  local spellTexture = GetSpellTextureFileName(name)
+  local name, rank, icon, castingTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(spellID)
+  -- local spellTexture = GetSpellTextureFileName(name)
 
   -- Create a button for the spell
   local spell = AceGUI:Create("Icon")
-  spell:SetImage(spellTexture)
+  spell:SetImage(originalIcon)
   spell:SetLabel(name)
-  spell:SetImageSize(40,40)
+  spell:SetImageSize(40, 40)
   spell:SetCallback("OnClick", function() PickupSpell(spellID) end)
   spell:SetCallback("OnEnter", function()
     GameTooltip:SetOwner(spell.frame, "ANCHOR_BOTTOMRIGHT")

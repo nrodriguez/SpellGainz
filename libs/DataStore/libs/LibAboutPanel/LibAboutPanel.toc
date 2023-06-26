@@ -3,6 +3,10 @@
 ## X-Curse-Project-Name: LibAboutPanel
 ## X-Curse-Project-ID: libaboutpanel
 ## X-Curse-Repository-ID: wow/libaboutpanel/mainline
+## X-Curse-Packaged-Version: v0.5.3b
+## X-Curse-Project-Name: SpellGainz
+## X-Curse-Project-ID: spellgainz
+## X-Curse-Repository-ID: wow/spellgainz/mainline
 
 ## Notes: Adds an about panel to interface options.
 

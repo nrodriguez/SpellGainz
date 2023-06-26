@@ -1,0 +1,30 @@
+tag 0adad3c7bb857e6efbfca2441f4090a2d663bbe8 0.46
+Author:	Hendrik Leppkes <h.leppkes@gmail.com>
+Date:	Wed May 3 08:53:20 2023 +0200
+
+Tag as 0.46
+
+commit 4fcb338015a5d37318e256886eff09eea1a3bf0d
+Author: Hendrik Leppkes <h.leppkes@gmail.com>
+Date:   Wed May 3 08:52:52 2023 +0200
+
+    Update TOC for 10.1
+
+commit d6aa3b1944ab5a605b94c272fc52aab6173cbc30
+Author: Hendrik Leppkes <h.leppkes@gmail.com>
+Date:   Wed Mar 22 08:46:33 2023 +0100
+
+    Update TOC for 10.0.7
+
+commit 17511f89493fbd08ab5f14aa3a118733cdc23431
+Author: Hendrik Leppkes <h.leppkes@gmail.com>
+Date:   Thu Dec 15 00:00:39 2022 +0100
+
+    Fix action highlight animation not running smoothly
+
+commit fd4fb4f96a4ee41947646325b8c4ea3f909a7c39
+Author: Hendrik Leppkes <h.leppkes@gmail.com>
+Date:   Tue Nov 22 20:03:18 2022 +0100
+
+    Fix stuck pushed-down buttons when using mouse bindings for ground-targeted spells
+

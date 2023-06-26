@@ -12,5 +12,9 @@
 ## X-Curse-Project-Name: DataStore_Spells
 ## X-Curse-Project-ID: datastore_spells
 ## X-Curse-Repository-ID: wow/datastore_spells/mainline
+## X-Curse-Packaged-Version: v0.5.3b
+## X-Curse-Project-Name: SpellGainz
+## X-Curse-Project-ID: spellgainz
+## X-Curse-Repository-ID: wow/spellgainz/mainline
 
 DataStore_Spells.lua
