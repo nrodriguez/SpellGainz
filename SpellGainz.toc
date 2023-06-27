@@ -2,11 +2,11 @@
 ## Title: SpellGainz
 ## Notes: Notifies you when you learn a spell/talent. Make those gainz
 ## Author: JustNeph
-## Version: 1.0.0
+## Version: 1.0.1
 ## SavedVariables: SpellGainzDB
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3
-## X-Curse-Packaged-Version: v1.0.0
+## X-Curse-Packaged-Version: v1.0.1
 ## X-Curse-Project-Name: SpellGainz
 ## X-Curse-Project-ID: spellgainz
 ## X-Curse-Repository-ID: wow/spellgainz/mainline

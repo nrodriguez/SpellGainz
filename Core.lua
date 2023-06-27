@@ -23,11 +23,13 @@ end
 function SpellGainz:CreateFrame()
   -- Create a container frame
   f = AceGUI:Create("Frame")
-  f:SetCallback("OnClose", function(widget) f:Hide() end)
   f:SetTitle("Spell Gainz")
   f:SetStatusText("All the gainz you have made")
   f:SetLayout("Flow")
   f:Hide() -- We don't want to display it immediately
+
+  --Set Callbacks
+  f:SetCallback("OnClose", function(widget) f:Hide() end)
 end
 
 function SpellGainz:SetUpConfig()
@@ -55,7 +57,7 @@ function SpellGainz:SetupSlashConfig()
       -- }
     },
   }
-  LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, { "gainz", "spellgainz" })
+  LibStub("AceConfig-3.0"):RegisterOptionsTable("SpellGainz", options, { "gainz", "spellgainz", "sg" })
 end
 
 -- We use the system chat message to know when spells have been unlearned
@@ -72,7 +74,18 @@ function SpellGainz:CHAT_MSG_SYSTEM(eventName, message)
 end
 
 function SpellGainz:LEARNED_SPELL_IN_TAB(eventName, spellID)
-  if not IsPassiveSpell(spellID) then
+  local name, rank, icon, castingTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(spellID)
+
+  --Ignore Dragonriding Spells
+  local dragonRidingSpellIds = {
+    372608, --Surge Forward
+    372610, --Skyward Ascent
+    374990, --Bronze Timelock
+    361584, --Whirling Surge
+    403092  -- Aerial Halt
+  }
+
+  if not IsPassiveSpell(spellID) and not dragonRidingSpellIds[spellID] then
     SpellGainz:AddNewSpell(spellID)
     f:Show()
   end
@@ -87,7 +100,6 @@ end
 function SpellGainz:AddNewSpell(spellID)
   --Gets the spell information and the texture
   local name, rank, icon, castingTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(spellID)
-  -- local spellTexture = GetSpellTextureFileName(name)
 
   -- Create a button for the spell
   local spell = AceGUI:Create("Icon")
